@@ -8,3 +8,14 @@ services:
     build:
       context: .
       dockerfile: ./services/jenkins/Dockerfile
+    ports:
+      - "8081:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # 支持容器中使用宿主机 docker 指令
+      - src:/home:rw
+volumes:
+  src:
+    driver: local
+    driver_opts:
+      device: ${HOME}/src # docker 不支持相对路径
+      o: bind
