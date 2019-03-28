@@ -1,0 +1,10 @@
+version: '3'
+services:
+  jenkins:
+    environment:
+      MIRROR_SOURCE: tencent
+    image: hopher/jenkins:2.60.3
+    container_name: my_jenkins
+    build:
+      context: .
+      dockerfile: ./services/jenkins/Dockerfile
