@@ -3,7 +3,7 @@ services:
   jenkins:
     environment:
       MIRROR_SOURCE: tencent
-    image: hopher/jenkins:2.60.3
+    image: hopher/jenkins:1.14.0
     container_name: my_jenkins
     build:
       context: .
@@ -11,7 +11,7 @@ services:
     ports:
       - "8081:8080"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock # 支持容器中使用宿主机 docker 指令
+      - /var/run/docker.sock:/var/run/docker.sock # Mounts the docker socket into the container
       - src:/home:rw
 volumes:
   src:

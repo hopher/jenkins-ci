@@ -1,10 +1,10 @@
 # Jenkins 持续集成
 
-docker 镜像
-jenkinsci/blueocean
+
+基于 `jenkinsci/blueocean:1.14.0` 镜像，Jenkins 持续集成布署
 
 
-##
+## xx
 
 phpDox 假设配置是用来生成 api 文档
 
@@ -39,10 +39,34 @@ https://github.com/jenkins-docs/simple-node-js-react-npm-app
 
 
 
+## 权限问题解决
+
+> Got permission denied while trying to connect to the Docker daemon socket  
+> **解决**: https://github.com/chrootLogin/docker-nextcloud/issues/3
+
+将用户jenkins，添加到组 docker
+
+```
+sudo usermod -a -G docker jenkins
+```
+
+**dockerfile文件**
+```
+USER root
+#RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories
+RUN apk --no-cache add shadow && usermod -a -G docker jenkins
+USER jenkins
+```
+
+
 ## 参考资料
+
 - [自动化部署之jenkins及简介](https://www.cnblogs.com/jimmy-xuli/p/9020825.html)
 - [Jenkins官网](https://jenkins.io/)
 - [Jenkins官网 - 中文](https://jenkins.io/zh/)
 - [PHP 集成](https://jenkins.io/solutions/php/)
 - [使用 Jenkins 自动化发布 PHP 项目](https://www.centos.bz/2018/05/使用-jenkins-自动化发布-php-项目/)
 - [Jenkins发布PHP代码](https://www.cnblogs.com/jimmy-xuli/p/9072015.html)
+- [Docker Compose Build Step Plugin](https://wiki.jenkins.io/display/JENKINS/Docker+Compose+Build+Step+Plugin)
+- [Github 参考项目 istresearch/jenkins ](https://github.com/istresearch/jenkins)
+- [Jenkins Mounts the docker socket 权限问题解决](https://github.com/chrootLogin/docker-nextcloud/issues/3)
