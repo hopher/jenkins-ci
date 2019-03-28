@@ -1,8 +1,8 @@
 # Jenkins 持续集成
 
+用 Docker 容器服务的方式搭建 `jenkinsci` 持续集成环境, 易于维护、升级。
 
-基于 `jenkinsci/blueocean:1.14.0` 镜像，Jenkins 持续集成布署
-
+本环境基于 `jenkinsci/blueocean:1.14.0` 镜像，Linux版本: `Alpine Linux 3.9`
 
 ## xx
 
